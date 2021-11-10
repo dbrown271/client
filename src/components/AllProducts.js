@@ -1,9 +1,10 @@
 import React, {useState, useEffect} from 'react';
 import axios from 'axios'
+import {Link} from "react-router-dom"
 
 
 
-const AllProducts = () => {
+const AllProducts = (props) => {
     const [allProducts, setAllProducts] = useState([])
 
     useEffect(() => {
@@ -13,19 +14,18 @@ const AllProducts = () => {
                 setAllProducts(response.data.results)
             })
             .catch(err => console.log("errrrrrrr->", err))
-    })
+    },[props.formSubmitted])
 
 
     return (
         <div>
+            <h1>All Products</h1>
             {
                 allProducts.map((products, i) => {
                     return (
                         <div key={i}>
-                            <h1>{`/ninjas/${products._id}`}</h1>
-                            <h1>Number of Projects:{products.price}</h1>
-
-                        </div>                        
+                            <h1> <Link to={`/products/${products._id}`}>{products.title}</Link> </h1>
+                        </div>
                     )
                 })
             }
