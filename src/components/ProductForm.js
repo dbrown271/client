@@ -27,7 +27,7 @@ const ProductForm = (props) => {
 
 
 
-    const submitHandler = (e)=>{
+    const submitHandler = (e) => {
         e.preventDefault()
         axios.post("http://localhost:8000/api/products", formInfo)
             .then(response=>{
